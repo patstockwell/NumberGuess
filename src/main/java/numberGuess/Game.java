@@ -6,8 +6,7 @@ public class Game {
 	
 	private int min = 1;
 	private int max = 100;
-	private int secretNum = -99; //used to test that it has a new random number
-	private boolean secretNumberHidden = true;
+	private int secretNum; 
 	
 	public Game() {
 		setSecretNum();
@@ -23,10 +22,6 @@ public class Game {
 		this.secretNum = ThreadLocalRandom.current().nextInt(min, max + 1);
 	}
 	
-	public boolean getSecrecyStatus() {
-		return secretNumberHidden;
-	}
-	
 	public int guessNumber(int guess) {
 		int guessedCorrectly;
 		// 0 == correct guess
@@ -34,7 +29,6 @@ public class Game {
 		// 1 == guess too high
 		if (guess == this.secretNum) {
 			guessedCorrectly = 0;
-			secretNumberHidden = false;
 		}
 		else if (guess < this.secretNum) {
 			guessedCorrectly = -1;

@@ -7,7 +7,7 @@ import org.junit.Before;
 
 public class GameTest {
 	
-	Game currentGame;
+	Game currentGame; 
 	
 	@Before
 	public void setUpGame() {
@@ -30,13 +30,6 @@ public class GameTest {
 		assertEquals(currentGame.guessNumber(1000), 1);
 		assertEquals(currentGame.guessNumber(currentGame.getSecretNum()), 0);
 		
-	}
-	
-	@Test
-	public void getSecrecyStatusTest() {
-		assertTrue(currentGame.getSecrecyStatus() == true);
-		currentGame.guessNumber(currentGame.getSecretNum());
-		assertTrue(currentGame.getSecrecyStatus() == false);
 	}
 
 }

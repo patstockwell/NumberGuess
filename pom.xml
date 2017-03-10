@@ -5,11 +5,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>NumberGuessApp</name>
   
-  <parent>
+	<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.1.RELEASE</version>
-    </parent>
+  		<version>1.5.1.RELEASE</version>
+	</parent>
 
     <dependencies>
         <dependency>

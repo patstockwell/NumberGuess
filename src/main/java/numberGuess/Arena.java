@@ -3,8 +3,8 @@ package numberGuess;
 public enum Arena {	
 	OFDOOM;
 	
-	private Game currentGame;
-	private int count = 0;
+	private Game currentGame = new Game();
+	private int count = 13;
 
 	public Game createNewGame() {
 		currentGame = new Game();

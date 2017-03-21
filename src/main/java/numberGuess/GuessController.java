@@ -16,14 +16,9 @@ public class GuessController {
 	
 	@CrossOrigin
 	@RequestMapping("/guess")
-	public Guess makeGuess(
-			@RequestParam(value="guessedNum", defaultValue="99") String guessedNum,
-			@RequestParam(value="gameCount", defaultValue="-1") String gameCount,
-			@RequestParam(value="userID", defaultValue="1211") String userID
-			) {
+	public Guess makeGuess(@RequestParam(value="guessedNum", defaultValue="99") String guessedNum, @RequestParam(value="gameCount", defaultValue="-1") String gameCount, @RequestParam(value="userID", defaultValue="1211") String userID) {
 		int x = Arena.OFDOOM.getGame().getSecretNum();
-		System.out.println(x);
-		
+		System.out.println(x); //print number to terminal for debugging
 		String message;
 		int currentPoints = 100; //currentPoints should initialise from the database.
 		int changeInPoints;
@@ -52,7 +47,6 @@ public class GuessController {
 			SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
 			api.call(new SlackMessage("User:" + userID + "\n " + message + "\nChange in points: " + changeInPoints + "\nCurrent Points: " + currentPoints));
 		}
-		
 		currentPoints = currentPoints + changeInPoints;
 		//write info to the database
 		

@@ -13,16 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class GuessController {
 
 	private final AtomicLong counter = new AtomicLong();
+	private PlayerRepository playerRepository;
 	
 	@CrossOrigin
 	@RequestMapping("/guess")
 	public GuessResponse makeGuess(@RequestParam(value="guessedNum", defaultValue="99") String guessedNum, @RequestParam(value="gameCount", defaultValue="-1") String gameCount, @RequestParam(value="userID", defaultValue="1211") String userID) {
 		System.out.println(Arena.OFDOOM.getGame().getSecretNum()); //print number to terminal for debugging
+		
+		Player currentPlayer = playerRepository.findById(userID);
+		
 		String message;
 		int currentPoints = 100; //currentPoints should initialise from the database.
 		int changeInPoints;
 		
-//		Arena.OFDOOM.getGame().guessNumber(Integer.parseInt(guessedNum))
+		int guessResponse = Arena.OFDOOM.getGame().guessNumber(Integer.parseInt(guessedNum));
 		
 		//check guess matches the right game
 		if (isNotCurrentGame(Integer.parseInt(gameCount))) {

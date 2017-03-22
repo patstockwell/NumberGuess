@@ -18,16 +18,16 @@ public class PlayerController {
 
 	@GetMapping(path="/register")
 	public @ResponseBody String registerPlayer (@RequestParam String name, @RequestParam String password) {
-		
-		Player n = new Player();
-		n.setName(name);
-		n.setPassword(password);
 		if (playerRepository.exists(name)) {
 			return "Username already taken, try another";
 		}
-		else
-		playerRepository.save(n);
-		return "Saved";
+		else {
+			Player n = new Player();
+			n.setName(name);
+			n.setPassword(password);
+			playerRepository.save(n);
+			return "Saved";
+		}
 	}
 
 	@GetMapping(path="/all")

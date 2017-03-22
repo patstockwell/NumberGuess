@@ -13,6 +13,7 @@ public class Player {
 	@Id
     private String name;
     private String password;
+    private int points = 100;
 
 	public long getId() {
 		return id;
@@ -36,6 +37,14 @@ public class Player {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	

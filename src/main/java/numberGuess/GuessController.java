@@ -17,11 +17,12 @@ public class GuessController {
 	@CrossOrigin
 	@RequestMapping("/guess")
 	public Guess makeGuess(@RequestParam(value="guessedNum", defaultValue="99") String guessedNum, @RequestParam(value="gameCount", defaultValue="-1") String gameCount, @RequestParam(value="userID", defaultValue="1211") String userID) {
-		int x = Arena.OFDOOM.getGame().getSecretNum();
-		System.out.println(x); //print number to terminal for debugging
+		System.out.println(Arena.OFDOOM.getGame().getSecretNum()); //print number to terminal for debugging
 		String message;
 		int currentPoints = 100; //currentPoints should initialise from the database.
 		int changeInPoints;
+		
+//		Arena.OFDOOM.getGame().guessNumber(Integer.parseInt(guessedNum))
 		
 		//check guess matches the right game
 		if (isNotCurrentGame(Integer.parseInt(gameCount))) {

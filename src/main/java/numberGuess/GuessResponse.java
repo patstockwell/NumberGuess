@@ -1,6 +1,6 @@
 package numberGuess;
 
-public class Guess {
+public class GuessResponse {
 	
 	private final long guessID;
 	private final long userID;
@@ -9,7 +9,7 @@ public class Guess {
     private int changeInPoints;
     private int gameCount;
 
-    public Guess(long guessID, String content, int currentPoints, int changeInPoints, long userID) {
+    public GuessResponse(long guessID, String content, int currentPoints, int changeInPoints, long userID) {
         this.guessID = guessID;
         this.content = content;
         this.currentPoints = currentPoints;

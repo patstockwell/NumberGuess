@@ -16,7 +16,7 @@ public class GuessController {
 	
 	@CrossOrigin
 	@RequestMapping("/guess")
-	public Guess makeGuess(@RequestParam(value="guessedNum", defaultValue="99") String guessedNum, @RequestParam(value="gameCount", defaultValue="-1") String gameCount, @RequestParam(value="userID", defaultValue="1211") String userID) {
+	public GuessResponse makeGuess(@RequestParam(value="guessedNum", defaultValue="99") String guessedNum, @RequestParam(value="gameCount", defaultValue="-1") String gameCount, @RequestParam(value="userID", defaultValue="1211") String userID) {
 		System.out.println(Arena.OFDOOM.getGame().getSecretNum()); //print number to terminal for debugging
 		String message;
 		int currentPoints = 100; //currentPoints should initialise from the database.
@@ -53,7 +53,7 @@ public class GuessController {
 		
 		
 	
-		return new Guess(counter.incrementAndGet(), message, currentPoints, changeInPoints, Integer.parseInt(userID));
+		return new GuessResponse(counter.incrementAndGet(), message, currentPoints, changeInPoints, Integer.parseInt(userID));
 	}
 	
 	public boolean isNotCurrentGame(int gameCount) {

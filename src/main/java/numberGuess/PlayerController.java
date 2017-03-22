@@ -34,5 +34,16 @@ public class PlayerController {
 	public @ResponseBody Iterable<Player> getAllPlayers() {
 		return playerRepository.findAll();
 	}
+	
+	@GetMapping(path="/login")
+	public @ResponseBody Player login(@RequestParam String name, @RequestParam String password) {
+		Player player = playerRepository.findOne(name);
+		if (player.getPassword().equals(password)) {
+			return player;
+		}
+		else
+			System.out.println("Current password is: " + password + " \nPlayer password is: " + player.getPassword());
+			return null;
+	}
 
 }

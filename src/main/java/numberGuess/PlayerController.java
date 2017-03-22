@@ -42,12 +42,17 @@ public class PlayerController {
 			if (player.getPassword().equals(password)) {
 				return player;
 			}
-			else
+			else {
 				System.out.println("Current password is: " + password + " \nPlayer password is: " + player.getPassword());
-			return null;
+				Player wrongPassword = new Player();
+				wrongPassword.setId(-1); //return -1 to show wrong password entered
+				return wrongPassword;
+			}
 		}
 		catch (Exception e) {
-			return null;
+			Player noUsername = new Player();
+			noUsername.setId(0); //return 0 to show no user-name found
+			return noUsername;
 		}
 	}
 

@@ -3,10 +3,10 @@ package numberGuess;
 public class GuessResponse {
 	
 	private final long guessID;
-	private final long userID;
     private final String content;
     private int currentPoints;
     private int changeInPoints;
+    private final long userID;
     private int gameCount;
 
     public GuessResponse(long guessID, String content, int currentPoints, int changeInPoints, long userID) {

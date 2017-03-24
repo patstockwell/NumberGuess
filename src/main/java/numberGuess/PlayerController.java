@@ -2,6 +2,7 @@ package numberGuess;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,7 @@ import numberGuess.PlayerRepository;
 public class PlayerController {
 	@Autowired
 	private PlayerRepository playerRepository;
-
+	@CrossOrigin
 	@GetMapping(path="/register")
 	public @ResponseBody String registerPlayer (@RequestParam String name, @RequestParam String password) {
 		if (playerRepository.exists(name)) {
@@ -34,7 +35,7 @@ public class PlayerController {
 	public @ResponseBody Iterable<Player> getAllPlayers() {
 		return playerRepository.findAll();
 	}
-	
+	@CrossOrigin
 	@GetMapping(path="/login")
 	public @ResponseBody Player login(@RequestParam String name, @RequestParam String password) {
 		try {
@@ -54,6 +55,18 @@ public class PlayerController {
 			noUsername.setId(0); //return 0 to show no user-name found
 			return noUsername;
 		}
+	}
+
+	@CrossOrigin
+	@GetMapping(path="/findById")
+	public @ResponseBody Player getById(@RequestParam long id) {
+		return playerRepository.findById(id);
+	}
+	
+	@CrossOrigin
+	@GetMapping(path="/findByName")
+	public @ResponseBody Player getByName(@RequestParam String name) {
+		return playerRepository.findByName(name);
 	}
 
 }

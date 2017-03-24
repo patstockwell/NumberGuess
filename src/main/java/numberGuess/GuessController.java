@@ -57,6 +57,7 @@ public class GuessController {
 		return new GuessResponse(counter.incrementAndGet(), message, currentPoints, changeInPoints, userID);
 	}
 	
+	
 	public boolean isNotCurrentGame(int gameCount) {
 		boolean isNotCurrentGame = true;
 		if(gameCount == Arena.OFDOOM.getGameCount()) {
@@ -64,6 +65,7 @@ public class GuessController {
 		}
 		return isNotCurrentGame;
 	}
+	
 	
 	@CrossOrigin
 	@GetMapping(path="/game/count")

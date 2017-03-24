@@ -43,17 +43,3 @@ public class GuessResponse {
 	}
 
 }
-/*
- * Inputs for API
- * - number (guess)
- * - gameID
- * - userID
- * 
- * Outputs for API
- * - Message string
- * - Current Points
- * - Amount of points won or lost in that guess
- * - userID
- * - game count
- * 
- * */

@@ -7,8 +7,9 @@ import javax.persistence.Id;
 public class Guess {
 	@Id
 	private Integer id;
-
     private String name;
+    private int gameNum;
+    private int guess;
 
 	public String getName() {
 		return name;
@@ -24,6 +25,22 @@ public class Guess {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public int getGameNum() {
+		return gameNum;
+	}
+
+	public void setGameNum(int gameNum) {
+		this.gameNum = gameNum;
+	}
+
+	public int getGuess() {
+		return guess;
+	}
+
+	public void setGuess(int guess) {
+		this.guess = guess;
 	}
 
 }

@@ -68,5 +68,13 @@ public class PlayerController {
 	public @ResponseBody Player getByName(@RequestParam String name) {
 		return playerRepository.findByName(name);
 	}
+	
+	@CrossOrigin
+	@GetMapping(path="/removeByName")
+	public @ResponseBody String removeByName(@RequestParam String name) {
+		Player player = playerRepository.findByName(name);
+		playerRepository.delete(player);
+		return player.getName() + " removed.";
+	}
 
 }

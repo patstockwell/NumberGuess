@@ -18,16 +18,16 @@ public class PlayerController {
 	private PlayerRepository playerRepository;
 	@CrossOrigin
 	@GetMapping(path="/register")
-	public @ResponseBody String registerPlayer (@RequestParam String name, @RequestParam String password) {
+	public @ResponseBody JsonMessage registerPlayer (@RequestParam String name, @RequestParam String password) {
 		if (playerRepository.exists(name)) {
-			return "Username already taken, try another";
+			return new JsonMessage("Username already taken, try another");
 		}
 		else {
 			Player n = new Player();
 			n.setName(name);
 			n.setPassword(password);
 			playerRepository.save(n);
-			return "Saved";
+			return new JsonMessage("Saved");
 		}
 	}
 

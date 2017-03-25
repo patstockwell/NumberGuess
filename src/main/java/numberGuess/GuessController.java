@@ -23,16 +23,21 @@ public class GuessController {
 	
 	@CrossOrigin
 	@RequestMapping("/guess")
-	public GuessResponse makeGuess(@RequestParam(value="guessedNum", defaultValue="101") String guessedNum, @RequestParam(value="gameCount", defaultValue="-1") String gameCount, @RequestParam(value="userID", defaultValue="1211") long userID) {
+	public GuessResponse makeGuess(
+			@RequestParam(value="guessedNum", defaultValue="101") String guessedNum, 
+			@RequestParam(value="gameCount", defaultValue="-1") String gameCount, 
+			@RequestParam(value="userID", defaultValue="1211") long userID) {
 		System.out.println(Arena.OFDOOM.getGame().getSecretNum()); //print number to terminal for debugging
 		Player currentPlayer = getById(userID); //are they logged in?
 		if (currentPlayer == null)
 			return new GuessResponse(0, "Invalid guess, user not logged in.", 0, 0, 0);
+		
 		int guess = Integer.parseInt(guessedNum); //set up some variables for the response
 		int secretNum = Arena.OFDOOM.getGame().getSecretNum();
 		String message;
 		int changeInPoints = -1;
 		int currentPoints = currentPlayer.getPoints();
+		
 		if (isNotCurrentGame(Integer.parseInt(gameCount))) //check guess matches the right game
 			message = "Someone guessed the number before you. A new game has started, try again!";
 		else if(guess < secretNum)
@@ -45,7 +50,10 @@ public class GuessController {
 			changeInPoints = guess;
 			try {
 				SlackApi api = new SlackApi("https://hooks.slack.com/services/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");
-				api.call(new SlackMessage("\nUser: " + currentPlayer.getName() + "\n " + message + "\nChange in points: " + changeInPoints + "\nCurrent Points: " + currentPoints + "\n"));
+				api.call(new SlackMessage("\nUser: " + currentPlayer.getName() 
+				+ "\n " + message 
+				+ "\nChange in points: " + changeInPoints 
+				+ "\nUpdated Points: " + (currentPoints + changeInPoints) + "\n"));
 			} 
 			catch (Exception e){
 				System.out.println("No Slack connection available.");

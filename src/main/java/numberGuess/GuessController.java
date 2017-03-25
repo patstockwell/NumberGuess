@@ -69,8 +69,9 @@ public class GuessController {
 	
 	@CrossOrigin
 	@GetMapping(path="/game/count")
-	public @ResponseBody int getGameCount() {
-		return Arena.OFDOOM.getGameCount();
+	public @ResponseBody JsonMessage getGameCount() {
+		String gameCount = "" + Arena.OFDOOM.getGameCount();
+		return new JsonMessage(gameCount);
 	}
 	
 	public Player getById(long id) {

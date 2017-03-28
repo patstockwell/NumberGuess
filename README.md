@@ -8,7 +8,7 @@ It can be built and run using the build tool maven.
 mvn spring-boot:run
 ```
 
-To start guessing, open guess.html found at
+To start guessing, open guess.html, register yourself, and login.
 ```shell
 src/main/resources/guess.html
 ```

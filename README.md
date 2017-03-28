@@ -10,3 +10,7 @@ The resulting .jar can be found in the created target directory. Run it using
 java -jar target/NumberGuess-0.0.1-SNAPSHOT.jar
 ```
 
+To start guessing, open guess.html found at
+```shell
+src/main/resources/guess.html
+```

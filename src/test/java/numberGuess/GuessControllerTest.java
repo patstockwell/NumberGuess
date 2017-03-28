@@ -18,5 +18,16 @@ public class GuessControllerTest {
 	public void isNotCurrentGameTest() {
 		assertFalse(controllerHere.isNotCurrentGame(13));
 	}
+	
+	@Test
+	public void getGameCountTest() {
+		JsonMessage json = controllerHere.getGameCount();
+		assertTrue(Integer.parseInt(json.getMessage()) == Arena.OFDOOM.getGameCount());
+	}
+	
+	@Test
+	public void getByIdTest() {
+		assertTrue(controllerHere.getById((long)43) == null);
+	}
 
 }

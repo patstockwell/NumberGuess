@@ -41,10 +41,14 @@ public class PlayerController {
 		try {
 			Player player = playerRepository.findOne(name);
 			if (player.getPassword().equals(password)) {
+				//create new id token
+				long id = System.currentTimeMillis();
+				player.setId(id);
+				playerRepository.save(player);
 				return player;
 			}
 			else {
-				System.out.println("Current password is: " + password + " \nPlayer password is: " + player.getPassword());
+				System.out.println("Attempted password is: " + password + " \nPlayer password is: " + player.getPassword());
 				Player wrongPassword = new Player();
 				wrongPassword.setId(-1); //return -1 to show wrong password entered
 				return wrongPassword;

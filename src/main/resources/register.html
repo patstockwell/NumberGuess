@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link href="./bootstrap.min.css" rel="stylesheet"/>
+    <script src="jquery.min.js"></script>
+    <script src="./bootstrap.min.js"></script>    
+    <title>Guess Register</title>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Number Guess</h1>
+            <h4>Current Player: <span id="login"></span></h4>
+            <div class="btn-group">
+                <a class="btn btn-default" href="./guess.html">Guess</a>
+                <a class="btn btn-default" href="./login.html">Login</a>
+                <a class="btn btn-default" href="./register.html">Register</a>
+                <button type="button" class="btn btn-success" onclick="logout();">Logout</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="flash" class="alert alert-info" role="alert" style="display: none"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Register</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="well">
+                                <form method="post" class="form" onsubmit="event.preventDefault(); register();">
+                                    <p>
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" name="name" required="required"/>
+                                    </p>
+                                    <p>
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password" required="required"/>
+                                    </p>
+                                    <p>
+                                        <input type="submit" value="Register" class="btn btn-success btn-block"/>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    
+    window.onload = function getName() {
+        document.getElementById("login").innerHTML = sessionStorage.getItem("name");
+    };
+
+    function logout() {
+        sessionStorage.clear();
+        document.getElementById("login").innerHTML = "";
+    };
+
+    function register() {
+        var parameters = $('form').serialize();
+        $.get("http://localhost:8080/player/register?" + parameters, function(data){
+                console.log(data);
+                document.getElementById("flash").innerHTML = data["message"];
+                document.getElementById("flash").style.display = "block";
+            });
+    }
+</script>
+</html>
